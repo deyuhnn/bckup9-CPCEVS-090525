@@ -38,13 +38,6 @@ export default function VoterDashboard() {
           return
         }
 
-        // Check token validity without automatic logout
-        // if (!isVoterTokenValid()) {
-        //   console.log("Token is invalid or expired")
-        //   voterLogout()
-        //   router.push("/voterlogin")
-        //   return
-        // }
 
         // Get voter from token
         const voterFromToken = getVoterFromToken()
@@ -288,6 +281,7 @@ export default function VoterDashboard() {
       hasVoted: votingStatus.ssg.hasVoted,
       color: "blue",
       path: "/voters/ssg",
+    path: "/voter/ssg-elections",
       icon: <Vote className="w-8 h-8 sm:w-10 md:w-12" />
     },
     {
