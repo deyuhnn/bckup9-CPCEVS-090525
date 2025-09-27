@@ -68,102 +68,92 @@ export default function VoterLogin() {
     }
   }
 
-  return (
-    <div className="min-h-screen flex flex-col md:flex-row overflow-x-hidden overflow-y-auto">
+ return (
+  <div className="min-h-screen flex items-center justify-center bg-blue-50">
+    <div className="flex flex-col md:flex-row bg-white shadow-lg md:rounded-lg overflow-hidden w-full max-w-5xl min-h-[550px]">
+      {/* Left Side */}
       <LeftSide />
 
-      <div className="w-full flex-grow bg-white flex flex-col items-center justify-center p-6 relative rounded-t-3xl -mt-3 md:mt-0 md:rounded-none md:w-3/5 md:h-screen md:p-9 xl:gap-y-20">
-        <div className="text-center mb-8 -mt-1 md:mb-10 md:mt-10 lg:mb-12 lg:-mt-0 xl:mb-16 xl:-mt-10">
-          <div className="flex flex-row items-center justify-center w-full mb-2">
-            <Image
-              src="/voteicon.png"
-              alt="Vote Icon"
-              width={48}
-              height={48}
-              className="mr-3 w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16"
-            />
-            <h2 className="text-3xl font-extrabold text-blue-900 md:text-4xl mb-1 lg:text-5xl xl:text-7xl m-0">
-              Welcome
-            </h2>
+      {/* Right Side */}
+      <div className="flex-1 flex flex-col items-center justify-evenly p-8 gap-6 overflow-auto">
+        
+        {/* Header */}
+       <div className="flex flex-row items-center gap-3 text-left">
+          {/* Icon */}
+          <img
+            src="voteicon.png"
+            alt="Vote Icon"
+            className="w-14 h-14"
+          />
+
+          {/* Texts */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800 text-center">WELCOME</h2>
+            <p className="text-blue-500 text-base md:mt-2">Please login to your account</p>
           </div>
-          <p className="text-base text-gray-600 md:text-lg xl:text-2xl">Please login to your account</p>
         </div>
 
-        <div className="w-full max-w-sm mb-4 md:max-w-md md:mb-6 xl:max-w-2xl">
-          <form className="w-full" onSubmit={handleSubmit}>
+
+        {/* Form */}
+        <div className="w-full max-w-2xl">
+          <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
+            
+            {/* Error */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-red-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3 flex-1">
-                    <p className="text-sm font-medium leading-5">{error}</p>
-                  </div>
-                </div>
+              <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg text-base">
+                {error}
               </div>
             )}
 
-            <div className="relative flex items-center mb-4 border border-gray-300 rounded-full shadow-sm px-4 py-2 md:mb-4 md:py-3 xl:py-5 xl:mb-8 bg-white focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-              <span className="text-gray-400 mr-3">
+            {/* User ID */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Image src="/user.png" alt="User Icon" width={20} height={20} />
-              </span>
+              </div>
               <input
                 type="text"
                 name="userId"
                 placeholder="Enter your School ID"
-                maxLength="8"
+                maxLength={8}
                 value={form.userId}
                 onChange={handleChange}
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-2xl xl:ml-2"
+                className="w-full pl-10 pr-3 py-3 text-blue-500 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-base"
                 required
                 disabled={isLoading}
               />
             </div>
 
-            <div className="relative flex items-center border border-gray-300 rounded-full shadow-sm px-4 py-2 md:py-3 xl:py-5 bg-white focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
-              <span className="text-gray-400 mr-3">
+            {/* Password */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Image src="/lock.png" alt="Password Icon" width={20} height={20} />
-              </span>
+              </div>
               <input
                 type="password"
                 name="password"
                 placeholder="Enter your password"
                 value={form.password}
                 onChange={handleChange}
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-2xl xl:ml-2"
+                className="w-full pl-10 pr-3 py-3 text-blue-500 border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-base"
                 required
                 disabled={isLoading}
               />
             </div>
 
-            <div className="mt-4" />
-
-            <div className="flex flex-row justify-center space-x-0 mt-8 lg:text-2xl xl:text-2xl xl:mt-10 w-full">
+            {/* Buttons */}
+            <div className="flex flex-row gap-2 justify-evenly mt-2 md:mt-8">
               <button
                 type="submit"
                 disabled={isLoading || !form.userId.trim() || !form.password.trim()}
-                className="flex-1 cursor-pointer bg-blue-600 rounded-full px-7 py-2 xl:px-9 xl:py-4 text-white font-bold shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition duration-200"
+                className="w-full cursor-pointer bg-blue-600 rounded-md px-7 py-3 text-white font-bold shadow-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition duration-200 text-base"
               >
-                {isLoading ? (
-                  <div className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Logging in...
-                  </div>
-                ) : (
-                  "Log In"
-                )}
+                {isLoading ? "Logging in..." : "Log In"}
               </button>
               <button
                 type="button"
                 onClick={handlePreRegister}
                 disabled={isLoading}
-                className="flex-1 cursor-pointer bg-white rounded-full px-7 py-2 xl:px-9 xl:py-4 text-blue-600 font-bold border border-blue-600 shadow-md ml-2 disabled:opacity-50 hover:bg-blue-50 transition duration-200"
+                className="w-full cursor-pointer bg-white rounded-lg px-7 py-3 text-blue-600 font-bold border border-blue-600 shadow-md disabled:opacity-50 hover:bg-blue-50 transition duration-200 text-base"
               >
                 Pre Register
               </button>
@@ -171,8 +161,10 @@ export default function VoterLogin() {
           </form>
         </div>
 
+        {/* Support */}
         <ChatSupportBtn />
       </div>
     </div>
-  )
+  </div>
+);
 }
