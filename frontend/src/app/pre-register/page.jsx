@@ -140,91 +140,84 @@ export default function PreRegister() {
   }
 
   return (
-    <>
-      <div className="min-h-screen flex flex-col md:flex-row overflow-x-hidden overflow-y-auto">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50">
+      <div className="flex flex-col md:flex-row bg-white shadow-lg md:rounded-lg overflow-hidden w-full max-w-4xl h-[600px]">
+        {/* Left Side */}
         <LeftSide />
-        <div className="w-full flex-grow bg-white flex flex-col items-center justify-center p-6 relative rounded-t-3xl -mt-3 md:mt-0 md:rounded-none md:w-3/5 md:h-screen xl:min-w-[600px] xl:-mt-10">
-          <div className="text-center mb-8 -mt-1 md:mb-10 md:mt-10 lg:mb-12 lg:-mt-0 xl:mb-16">
-            <div className="flex flex-row items-center justify-center w-full mb-2 xl:mt-10">
-              <img src="/voteicon.png" alt="Vote Icon" className="w-12 h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 mr-3" />
-              <h2 className="text-3xl font-bold text-blue-600 md:text-4xl lg:text-5xl xl:text-5xl m-0">
-                Pre Registration
-              </h2>
+       
+        {/* Right Side */}
+        <div className="flex-1 flex flex-col items-center p-8 overflow-auto">
+          <div className="flex flex-1 items-center mb-2">
+            <img
+              src="voteicon.png"
+              alt="Vote Icon"
+              className="w-10 h-10"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-blue-700 text-center">Pre Registration</h2>
+              <p className="text-gray-500 text-center">Enter your school ID to verify your information</p>
             </div>
-            <p className="text-base text-gray-600 md:text-lg xl:text-2xl">
-              Enter your school ID to verify your information
-            </p>
           </div>
 
+          {/* Error Message */}
           {error && (
-            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm w-full max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl">
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm w-full max-w-sm">
               {error}
             </div>
           )}
 
-          <form className="w-full max-w-sm mb-4 md:max-w-md md:mb-6 xl:max-w-xl 2xl:max-w-2xl" onSubmit={handleMatch}>
-            <div className="relative flex items-center mb-3 border border-gray-300 rounded-full shadow-sm px-4 py-2 md:mb-4 md:py-3 xl:py-5 xl:mb-6 2xl:px-8 2xl:py-6">
-              <input
-                type="number"
-                name="schoolId"
-                placeholder="Enter your School ID"
-                value={form.schoolId}
-                onChange={handleChange}
-                maxLength="8"
-                min="10000000"
-                max="99999999"
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-xl 2xl:text-2xl xl:ml-6 2xl:ml-10 2xl:placeholder:text-xl"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className="relative flex items-center mb-3 border border-gray-300 rounded-full shadow-sm px-4 py-2 md:mb-4 md:py-3 xl:py-5 xl:mb-6 2xl:px-8 2xl:py-6 bg-gray-50">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={form.firstName}
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-xl 2xl:text-2xl xl:ml-6 2xl:ml-10 2xl:placeholder:text-xl cursor-not-allowed"
-                readOnly
-              />
-            </div>
-
-            <div className="relative flex items-center mb-3 border border-gray-300 rounded-full shadow-sm px-4 py-2 md:mb-4 md:py-3 xl:py-5 xl:mb-6 2xl:px-8 2xl:py-6 bg-gray-50">
-              <input
-                type="text"
-                name="middleName"
-                placeholder="Middle Name"
-                value={form.middleName}
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-xl 2xl:text-2xl xl:ml-6 2xl:ml-10 2xl:placeholder:text-xl cursor-not-allowed"
-                readOnly
-              />
-            </div>
-
-            <div className="relative flex items-center mb-3 border border-gray-300 rounded-full shadow-sm px-4 py-2 md:mb-4 md:py-3 xl:py-5 xl:mb-6 2xl:px-8 2xl:py-6 bg-gray-50">
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={form.lastName}
-                className="flex-1 bg-transparent outline-none text-gray-800 text-base placeholder-gray-500 md:text-lg xl:text-xl 2xl:text-2xl xl:ml-6 2xl:ml-10 2xl:placeholder:text-xl cursor-not-allowed"
-                readOnly
-              />
-            </div>
-
-            <div className="flex flex-row justify-center space-x-0 mt-8 lg:text-2xl xl:text-2xl xl:mt-10 w-full">
+          {/* Form */}
+          <form className="w-full max-w-sm mb-4" onSubmit={handleMatch}>
+            <input
+              type="number"
+              name="schoolId"
+              placeholder="Enter your School ID"
+              value={form.schoolId}
+              onChange={handleChange}
+              maxLength="8"
+              min="10000000"
+              max="99999999"
+              className="w-full border p-3 rounded mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-blue-500"
+              required
+              disabled={loading}
+            />
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              value={form.firstName}
+              className="w-full border p-3 rounded mb-3 bg-gray-50 cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-blue-500"
+              readOnly
+            />
+            <input
+              type="text"
+              name="middleName"
+              placeholder="Middle Name"
+              value={form.middleName}
+              className="w-full border p-3 rounded mb-3 bg-gray-50 cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-blue-500"
+              readOnly
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={form.lastName}
+              className="w-full border p-3 rounded mb-3 bg-gray-50 cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-blue-500"
+              readOnly
+            />
+            <div className="flex gap-2 w-full mt-4">
               <button
                 type="button"
                 onClick={handleLogin}
                 disabled={loading}
-                className="flex-1 rounded-full py-3 text-blue-600 bg-white border-1 border-blue-700 font-semibold shadow-sm hover:bg-blue-50 transition xl:text-xl disabled:opacity-50"
+                className="flex-1 border py-2 rounded text-blue-600 bg-white hover:bg-blue-50"
               >
                 Log In
               </button>
               <button
                 type="submit"
                 disabled={loading || !voterFound}
-                className="flex-1 rounded-full py-3 text-white bg-blue-600 font-semibold shadow-sm xl:text-xl ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Processing..." : "Pre Register"}
               </button>
@@ -233,6 +226,7 @@ export default function PreRegister() {
           <ChatSupportBtn />
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
+
